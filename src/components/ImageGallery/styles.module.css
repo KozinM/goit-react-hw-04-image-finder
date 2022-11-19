@@ -1,0 +1,12 @@
+.Gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  padding-top: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 25px;
+
+  margin-left: -20px;
+}
