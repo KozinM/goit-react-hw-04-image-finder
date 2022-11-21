@@ -7,7 +7,8 @@ const ImageGallery = ({ images, onModalOpen }) => {
       <ul className={s.Gallery}>
         {images.map(({ id, webformatURL,largeImageURL }, index) => (
           <ImageGalleryItem
-            key={id}
+            key={index}
+            id={id}
             imgSrc={webformatURL}
             largeImgSrc={largeImageURL}
             openModal={onModalOpen}

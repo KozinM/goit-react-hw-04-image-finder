@@ -1,8 +1,38 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import s from './styles.module.css';
 import PropTypes from 'prop-types';
 
-export class Modal extends Component {
+export const Modal = ({onModalClose, largeImg}) => {
+  
+  const onKeyDownHandle = event => {
+    if (event.code === 'Escape') 
+    {onModalClose();}
+  };
+
+  const onBackdropClickHandle = event => {
+    if (event.target === event.currentTarget)
+     {onModalClose();}
+  };
+
+  useEffect(()=>{
+    window.addEventListener('keydown', onKeyDownHandle);
+    return () => {window.removeEventListener('keydown', onKeyDownHandle);}
+  },[]);
+  return (
+    <div className={s.Overlay} onClick={onBackdropClickHandle}>
+    <div className={s.Modal}>
+      <img src={largeImg}  alt="" />
+    </div>
+  </div>
+  )
+}
+
+Modal.propTypes = {
+  onModalClose: PropTypes.func.isRequired,
+  largeImg: PropTypes.string.isRequired,
+};
+
+/* export class Modal extends Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDownHandle);
@@ -38,4 +68,4 @@ export class Modal extends Component {
 Modal.propTypes = {
     toggleModal: PropTypes.func.isRequired,
     largeImage: PropTypes.string.isRequired,
-  };
+  }; */
